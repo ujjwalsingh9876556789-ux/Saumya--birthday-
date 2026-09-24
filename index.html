@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Saumya Soni — Birthday Mission</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: radial-gradient(circle at top, #24113f, #08080d 65%);
+    color: white;
+    font-family: "Courier New", monospace;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+}
+
+.screen {
+    display: none;
+    width: 100%;
+    min-height: 100vh;
+    padding: 25px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.screen.active {
+    display: flex;
+}
+
+.card {
+    width: min(430px, 100%);
+    padding: 30px 22px;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 25px;
+    box-shadow: 0 20px 80px rgba(0,0,0,0.65);
+    backdrop-filter: blur(12px);
+}
+
+h1 {
+    font-size: 34px;
+    margin: 12px 0;
+}
+
+h2 {
+    color: #b47cff;
+}
+
+p {
+    line-height: 1.6;
+}
+
+.muted {
+    color: #aaa;
+}
+
+.lock {
+    font-size: 75px;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+.timer {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 7px;
+    margin: 25px 0;
+}
+
+.time-box {
+    background: rgba(255,255,255,0.08);
+    padding: 12px 3px;
+    border-radius: 14px;
+}
+
+.number {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.label {
+    font-size: 10px;
+    color: #aaa;
+}
+
+button {
+    border: none;
+    border-radius: 999px;
+    padding: 14px 22px;
+    margin: 8px;
+    font-weight: bold;
+    font-size: 15px;
+    cursor: pointer;
+    background: white;
+    color: #111;
+    transition: .2s;
+}
+
+button:hover {
+    transform: scale(1.04);
+}
+
+.primary {
+    background: #9b5cff;
+    color: white;
+}
+
+.choice {
+    display: block;
+    width: 100%;
+    background: rgba(255,255,255,0.09);
+    color: white;
+    border: 1px solid rgba(255,255,255,0.12);
+}
+
+.gift {
+    font-size: 85px;
+    cursor: pointer;
+    display: inline-block;
+    animation: bounce 1s infinite;
+}
+
+@keyframes bounce {
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.progress-bg {
+    height: 8px;
+    background: rgba(255,255,255,.12);
+    border-radius: 10px;
+    margin: 20px 0;
+}
+
+.progress {
+    height: 100%;
+    width: 0%;
+    background: #b47cff;
+    border-radius: 10px;
+    transition: .3s;
+}
+
+.final-title {
+    font-size: 38px;
+    animation: pop .8s ease;
+}
+
+@keyframes pop {
+    from {
+        transform: scale(.5);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.savage {
+    margin-top: 25px;
+    padding: 18px;
+    border-radius: 18px;
+    background: rgba(255,255,255,.08);
+    border: 1px solid #ff4f7b;
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+.confetti {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.confetti-piece {
+    position: absolute;
+    top: -30px;
+    font-size: 22px;
+    animation: fall 3.5s linear forwards;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+.small {
+    color: #777;
+    font-size: 12px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- COUNTDOWN -->
+<section id="countdown" class="screen active">
+
+<div class="card">
+
+<div class="lock">🔒</div>
+
+<h1>Birthday Surprise</h1>
+
+<p class="muted">
+SYSTEM LOCKED
+</p>
+
+<p>
+Target: <b>Saumya Soni</b>
+</p>
+
+<p class="muted">
+Unlocks on<br>
+<b>27 September 2026 • 12:00 AM</b>
+</p>
+
+<div class="timer">
+
+<div class="time-box">
+<div id="days" class="number">00</div>
+<div class="label">DAYS</div>
+</div>
+
+<div class="time-box">
+<div id="hours" class="number">00</div>
+<div class="label">HOURS</div>
+</div>
+
+<div class="time-box">
+<div id="minutes" class="number">00</div>
+<div class="label">MIN</div>
+</div>
+
+<div class="time-box">
+<div id="seconds" class="number">00</div>
+<div class="label">SEC</div>
+</div>
+
+</div>
+
+<p class="small">
+⏳ Birthday security system active...
+</p>
+
+</div>
+</section>
+
+
+<!-- INTRO -->
+
+<section id="intro" class="screen">
+
+<div class="card">
+
+<div style="font-size:65px;">🎮</div>
+
+<h1>MISSION UNLOCKED</h1>
+
+<p class="muted">
+Welcome, Saumya.<br>
+Your birthday surprise has 3 security levels.
+</p>
+
+<button class="primary" onclick="showScreen('level1')">
+START MISSION ▶
+</button>
+
+</div>
+</section>
+
+
+<!-- LEVEL 1 -->
+
+<section id="level1" class="screen">
+
+<div class="card">
+
+<div style="font-size:50px;">🎁</div>
+
+<h1>LEVEL 1</h1>
+
+<p class="muted">
+Catch the birthday gift <b>3 times</b>.
+</p>
+
+<div class="progress-bg">
+<div id="progress" class="progress"></div>
+</div>
+
+<div id="gift" class="gift" onclick="catchGift()">
+🎁
+</div>
+
+<p id="catchText">
+Catches: 0 / 3
+</p>
+
+</div>
+</section>
+
+
+<!-- LEVEL 2 -->
+
+<section id="level2" class="screen">
+
+<div class="card">
+
+<div style="font-size:55px;">🧠</div>
+
+<h1>LEVEL 2</h1>
+
+<p>
+What is the magic birthday number?
+</p>
+
+<button class="choice" onclick="wrongAnswer()">
+17
+</button>
+
+<button class="choice" onclick="wrongAnswer()">
+21
+</button>
+
+<button class="choice" onclick="correctAnswer()">
+27 🎯
+</button>
+
+<button class="choice" onclick="wrongAnswer()">
+30
+</button>
+
+<p id="answerText" class="small"></p>
+
+</div>
+</section>
+
+
+<!-- LEVEL 3 -->
+
+<section id="level3" class="screen">
+
+<div class="card">
+
+<div style="font-size:65px;">🔐</div>
+
+<h1>FINAL LOCK</h1>
+
+<p class="muted">
+One final click...
+</p>
+
+<p>
+Are you ready for your surprise?
+</p>
+
+<button class="primary" onclick="finalUnlock()">
+UNLOCK MY SURPRISE 🔓
+</button>
+
+</div>
+</section>
+
+
+<!-- FINAL -->
+
+<section id="final" class="screen">
+
+<div class="card">
+
+<div style="font-size:65px;">
+🎉🎂🎈
+</div>
+
+<h1 class="final-title">
+HAPPY BIRTHDAY
+<br>
+SAUMYA SONI!
+</h1>
+
+<p class="muted">
+Mission completed successfully.
+</p>
+
+<p>
+🎊 LEVEL 19 UNLOCKED 🎊
+</p>
+
+<button onclick="playMusic()">
+🔊 PLAY HARYANVI MUSIC
+</button>
+
+<!-- LAST MESSAGE -->
+
+<div class="savage">
+
+💀😂
+
+<br><br>
+
+“Beshak tum ghar ki boj ho,
+par main dost hoon—boj ko bhi
+kabhi-kabhi special feel kara deta hoon.”
+
+</div>
+
+<p class="small">
+— From your very generous friend 😌
+</p>
+
+</div>
+
+<div id="confetti" class="confetti"></div>
+
+</section>
+
+
+<!-- MUSIC -->
+
+<audio id="music" loop>
+<source src="haryanvi.mp3" type="audio/mpeg">
+</audio>
+
+
+<script>
+
+/* =========================
+   COUNTDOWN
+========================= */
+
+const birthday =
+new Date("2026-09-27T00:00:00+05:30");
+
+function updateTimer() {
+
+    const now = new Date();
+
+    let difference =
+    birthday - now;
+
+    if (difference <= 0) {
+
+        clearInterval(timer);
+
+        showScreen("intro");
+
+        return;
+    }
+
+    const days =
+    Math.floor(difference / (1000 * 60 * 60 * 24));
+
+    const hours =
+    Math.floor(
+        (difference / (1000 * 60 * 60)) % 24
+    );
+
+    const minutes =
+    Math.floor(
+        (difference / (1000 * 60)) % 60
+    );
+
+    const seconds =
+    Math.floor(
+        (difference / 1000) % 60
+    );
+
+    document.getElementById("days").innerText =
+    String(days).padStart(2,"0");
+
+    document.getElementById("hours").innerText =
+    String(hours).padStart(2,"0");
+
+    document.getElementById("minutes").innerText =
+    String(minutes).padStart(2,"0");
+
+    document.getElementById("seconds").innerText =
+    String(seconds).padStart(2,"0");
+}
+
+const timer =
+setInterval(updateTimer,1000);
+
+updateTimer();
+
+
+/* =========================
+   SCREEN SWITCH
+========================= */
+
+function showScreen(id) {
+
+    document
+    .querySelectorAll(".screen")
+    .forEach(screen => {
+
+        screen.classList.remove("active");
+
+    });
+
+    document
+    .getElementById(id)
+    .classList.add("active");
+}
+
+
+/* =========================
+   LEVEL 1
+========================= */
+
+let catches = 0;
+
+function catchGift() {
+
+    catches++;
+
+    document.getElementById("catchText")
+    .innerText =
+    `Catches: ${catches} / 3`;
+
+    document.getElementById("progress")
+    .style.width =
+    (catches / 3 * 100) + "%";
+
+    const gift =
+    document.getElementById("gift");
+
+    gift.style.transform =
+    `translate(
+    ${Math.random()*100-50}px,
+    ${Math.random()*50-25}px
+    )`;
+
+    if (catches >= 3) {
+
+        setTimeout(() => {
+
+            showScreen("level2");
+
+        },500);
+
+    }
+}
+
+
+/* =========================
+   LEVEL 2
+========================= */
+
+function wrongAnswer() {
+
+    document.getElementById("answerText")
+    .innerText =
+    "❌ Wrong! Birthday system says TRY AGAIN 😂";
+
+}
+
+function correctAnswer() {
+
+    document.getElementById("answerText")
+    .innerText =
+    "✅ Correct! Level 2 cleared 🔓";
+
+    setTimeout(() => {
+
+        showScreen("level3");
+
+    },700);
+}
+
+
+/* =========================
+   FINAL UNLOCK
+========================= */
+
+function finalUnlock() {
+
+    showScreen("final");
+
+    createConfetti();
+
+}
+
+
+/* =========================
+   CONFETTI
+========================= */
+
+function createConfetti() {
+
+    const container =
+    document.getElementById("confetti");
+
+    const emojis =
+    ["🎉","✨","🎈","🎊","💜","🔥"];
+
+    for(let i=0;i<80;i++) {
+
+        const piece =
+        document.createElement("span");
+
+        piece.className =
+        "confetti-piece";
+
+        piece.innerText =
+        emojis[
+            Math.floor(
+                Math.random()*emojis.length
+            )
+        ];
+
+        piece.style.left =
+        Math.random()*100 + "%";
+
+        piece.style.animationDelay =
+        Math.random()*1.5 + "s";
+
+        container.appendChild(piece);
+    }
+}
+
+
+/* =========================
+   MUSIC
+========================= */
+
+function playMusic() {
+
+    const music =
+    document.getElementById("music");
+
+    music.play().catch(() => {
+
+        alert(
+        "Music start nahi hua. Make sure haryanvi.mp3 file index.html ke same folder mein hai."
+        );
+
+    });
+
+}
+
+</script>
+
+</body>
+</html>
